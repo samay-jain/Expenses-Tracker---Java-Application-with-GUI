@@ -13,10 +13,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Toolkit;
 
 public class viewexpense {
 
-	private JFrame frame;
+	private JFrame frmExpenseTracker;
 
 	/**
 	 * Launch the application.
@@ -26,7 +27,7 @@ public class viewexpense {
 			public void run() {
 				try {
 					viewexpense window = new viewexpense();
-					window.frame.setVisible(true);
+					window.frmExpenseTracker.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -64,12 +65,14 @@ public class viewexpense {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(255, 204, 204));
-		frame.setBounds(100, 100, 1123, 686);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
+		frmExpenseTracker.setTitle("Expense Tracker");
+		frmExpenseTracker.setResizable(false);
+		frmExpenseTracker.getContentPane().setBackground(new Color(255, 204, 204));
+		frmExpenseTracker.setBounds(100, 100, 1123, 686);
+		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblAllYourExpenses = new JLabel("All your Expenses");
 		lblAllYourExpenses.setForeground(new Color(0, 0, 102));
@@ -77,23 +80,23 @@ public class viewexpense {
 		lblAllYourExpenses.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAllYourExpenses.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblAllYourExpenses.setBounds(10, 10, 1089, 62);
-		frame.getContentPane().add(lblAllYourExpenses);
+		frmExpenseTracker.getContentPane().add(lblAllYourExpenses);
 		
 		JButton btnBack = new JButton("back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				homepage.main(null);
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(204, 204, 255));
 		btnBack.setBounds(484, 588, 141, 51);
-		frame.getContentPane().add(btnBack);
+		frmExpenseTracker.getContentPane().add(btnBack);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(48, 97, 1012, 481);
-		frame.getContentPane().add(scrollPane);
+		frmExpenseTracker.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);

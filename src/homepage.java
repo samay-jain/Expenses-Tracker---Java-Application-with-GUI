@@ -9,10 +9,11 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class homepage {
 
-	private JFrame frame;
+	private JFrame frmExpenseTracker;
 
 	/**
 	 * Launch the application.
@@ -22,7 +23,7 @@ public class homepage {
 			public void run() {
 				try {
 					homepage window = new homepage();
-					window.frame.setVisible(true);
+					window.frmExpenseTracker.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,24 +44,26 @@ public class homepage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 1389, 761);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
+		frmExpenseTracker.setTitle("Expense Tracker");
+		frmExpenseTracker.setResizable(false);
+		frmExpenseTracker.getContentPane().setBackground(new Color(255, 255, 255));
+		frmExpenseTracker.setBounds(100, 100, 1389, 761);
+		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblHomePage = new JLabel("Home Page");
 		lblHomePage.setForeground(new Color(0, 0, 102));
 		lblHomePage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHomePage.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblHomePage.setBounds(10, 10, 1355, 62);
-		frame.getContentPane().add(lblHomePage);
+		frmExpenseTracker.getContentPane().add(lblHomePage);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(153, 204, 255));
 		panel.setBounds(100, 100, 1165, 561);
-		frame.getContentPane().add(panel);
+		frmExpenseTracker.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
@@ -141,7 +144,7 @@ public class homepage {
 		JButton btnNewButton = new JButton("Add Expense");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				addexpense.main(null);
 			}
 		});
@@ -154,7 +157,7 @@ public class homepage {
 		btnDeleteExpense.setBackground(new Color(255, 153, 153));
 		btnDeleteExpense.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				deleteexpense.main(null);
 			}
 		});
@@ -165,7 +168,7 @@ public class homepage {
 		JButton btnViewExpense = new JButton("View Expense");
 		btnViewExpense.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				viewexpense.main(null);
 			}
 		});
@@ -177,7 +180,7 @@ public class homepage {
 		JButton btnNewButton_3 = new JButton("More Facts");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				morefacts.main(null);
 			}
 		});
@@ -189,12 +192,12 @@ public class homepage {
 		JButton btnLogOut = new JButton("log out");
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				login.main(null);
 			}
 		});
 		btnLogOut.setBounds(615, 676, 141, 37);
-		frame.getContentPane().add(btnLogOut);
+		frmExpenseTracker.getContentPane().add(btnLogOut);
 		btnLogOut.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnLogOut.setBackground(new Color(255, 204, 204));
 	}

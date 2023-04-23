@@ -20,9 +20,10 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
+import java.awt.Toolkit;
 public class addexpense {
 
-	private JFrame frame;
+	private JFrame frmExpenseTracker;
 	private JTable table;
 	private JTextField textprice;
 	private JTextField textdate;
@@ -36,7 +37,7 @@ public class addexpense {
 			public void run() {
 				try {
 					addexpense window = new addexpense();
-					window.frame.setVisible(true);
+					window.frmExpenseTracker.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,24 +73,26 @@ public class addexpense {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(255, 204, 204));
-		frame.setBounds(100, 100, 1115, 670);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
+		frmExpenseTracker.setTitle("Expense Tracker");
+		frmExpenseTracker.setResizable(false);
+		frmExpenseTracker.getContentPane().setBackground(new Color(255, 204, 204));
+		frmExpenseTracker.setBounds(100, 100, 1115, 670);
+		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblAddExpenses = new JLabel("Add Expenses");
 		lblAddExpenses.setForeground(new Color(0, 0, 102));
 		lblAddExpenses.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAddExpenses.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblAddExpenses.setBounds(10, 10, 1081, 62);
-		frame.getContentPane().add(lblAddExpenses);
+		frmExpenseTracker.getContentPane().add(lblAddExpenses);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 153, 153));
 		panel.setBounds(56, 400, 989, 162);
-		frame.getContentPane().add(panel);
+		frmExpenseTracker.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblEnterFollowingDetails = new JLabel("Enter following details");
@@ -159,14 +162,14 @@ public class addexpense {
 		JButton btnBack = new JButton("back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				homepage.main(null);
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(204, 204, 255));
 		btnBack.setBounds(388, 572, 141, 51);
-		frame.getContentPane().add(btnBack);
+		frmExpenseTracker.getContentPane().add(btnBack);
 		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
@@ -196,11 +199,11 @@ public class addexpense {
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnAdd.setBackground(new Color(204, 204, 255));
 		btnAdd.setBounds(562, 572, 141, 51);
-		frame.getContentPane().add(btnAdd);
+		frmExpenseTracker.getContentPane().add(btnAdd);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(56, 82, 987, 308);
-		frame.getContentPane().add(scrollPane);
+		frmExpenseTracker.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);

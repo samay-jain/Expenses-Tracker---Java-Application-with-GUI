@@ -17,7 +17,7 @@ public class DB
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url="jdbc:mysql://localhost:3306/project";
             String username = "root";
-            String password = "";
+            String password = "Samayj04@";
             con = DriverManager.getConnection(url,username,password);
         }
 		catch(Exception e)

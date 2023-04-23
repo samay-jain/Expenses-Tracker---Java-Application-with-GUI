@@ -13,10 +13,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class signup {
 
-	private JFrame frame;
+	private JFrame frmExpenseTracker;
 	private JTextField getname;
 	private JTextField getemail;
 	private JTextField getpassword;
@@ -30,7 +31,7 @@ public class signup {
 			public void run() {
 				try {
 					signup window = new signup();
-					window.frame.setVisible(true);
+					window.frmExpenseTracker.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,24 +52,26 @@ public class signup {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 1281, 754);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
+		frmExpenseTracker.setTitle("Expense Tracker");
+		frmExpenseTracker.setResizable(false);
+		frmExpenseTracker.getContentPane().setBackground(new Color(255, 255, 255));
+		frmExpenseTracker.setBounds(100, 100, 1281, 754);
+		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblSignUpPage = new JLabel("Signup Page");
 		lblSignUpPage.setForeground(new Color(0, 0, 102));
 		lblSignUpPage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSignUpPage.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblSignUpPage.setBounds(10, 27, 1247, 56);
-		frame.getContentPane().add(lblSignUpPage);
+		frmExpenseTracker.getContentPane().add(lblSignUpPage);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 204, 204));
 		panel.setBounds(85, 105, 1096, 517);
-		frame.getContentPane().add(panel);
+		frmExpenseTracker.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblEnterTheFollowing = new JLabel("Enter the following details");
@@ -148,7 +151,7 @@ public class signup {
 					if(b==true)
 					{
 						JOptionPane.showMessageDialog(null, "Sign up successfull!");
-						frame.setVisible(false);
+						frmExpenseTracker.setVisible(false);
 						login.main(null);
 					}
 					else
@@ -164,13 +167,13 @@ public class signup {
 		btnLogin.setBackground(new Color(204, 204, 255));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				login.main(null);
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnLogin.setBounds(527, 647, 211, 43);
-		frame.getContentPane().add(btnLogin);
+		frmExpenseTracker.getContentPane().add(btnLogin);
 	}
 
 }

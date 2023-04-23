@@ -20,10 +20,11 @@ import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import java.awt.Toolkit;
 
 public class deleteexpense {
 
-	private JFrame frame;
+	private JFrame frmExpenseTracker;
 
 	/**
 	 * Launch the application.
@@ -33,7 +34,7 @@ public class deleteexpense {
 			public void run() {
 				try {
 					deleteexpense window = new deleteexpense();
-					window.frame.setVisible(true);
+					window.frmExpenseTracker.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -74,12 +75,14 @@ public class deleteexpense {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(255, 204, 204));
-		frame.setBounds(100, 100, 1390, 769);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
+		frmExpenseTracker.setTitle("Expense Tracker");
+		frmExpenseTracker.setResizable(false);
+		frmExpenseTracker.getContentPane().setBackground(new Color(255, 204, 204));
+		frmExpenseTracker.setBounds(100, 100, 1390, 769);
+		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblDeleteExpense = new JLabel("Delete Expense");
 		lblDeleteExpense.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,11 +90,11 @@ public class deleteexpense {
 		lblDeleteExpense.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblDeleteExpense.setBackground(new Color(0, 0, 0));
 		lblDeleteExpense.setBounds(10, 22, 1356, 62);
-		frame.getContentPane().add(lblDeleteExpense);
+		frmExpenseTracker.getContentPane().add(lblDeleteExpense);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(61, 102, 1252, 330);
-		frame.getContentPane().add(scrollPane);
+		frmExpenseTracker.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
@@ -101,19 +104,19 @@ public class deleteexpense {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				homepage.main(null);
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(204, 204, 255));
 		btnBack.setBounds(534, 671, 141, 51);
-		frame.getContentPane().add(btnBack);
+		frmExpenseTracker.getContentPane().add(btnBack);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 153, 153));
 		panel.setBounds(61, 442, 1252, 219);
-		frame.getContentPane().add(panel);
+		frmExpenseTracker.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblEnterFollowingDetails = new JLabel("Enter following details");
@@ -266,6 +269,6 @@ public class deleteexpense {
 		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnDelete.setBackground(new Color(204, 204, 255));
 		btnDelete.setBounds(705, 671, 141, 51);
-		frame.getContentPane().add(btnDelete);
+		frmExpenseTracker.getContentPane().add(btnDelete);
 	}
 }

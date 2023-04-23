@@ -12,10 +12,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class login {
 
-	private JFrame frame;
+	private JFrame frmExpenseTracker;
 	private JTextField getemail;
 	private JPasswordField getpassword;
 
@@ -27,7 +28,7 @@ public class login {
 			public void run() {
 				try {
 					login window = new login();
-					window.frame.setVisible(true);
+					window.frmExpenseTracker.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,23 +51,25 @@ public class login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 1174, 671);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
+		frmExpenseTracker.setTitle("Expense Tracker");
+		frmExpenseTracker.setResizable(false);
+		frmExpenseTracker.getContentPane().setBackground(new Color(255, 255, 255));
+		frmExpenseTracker.setBounds(100, 100, 1174, 671);
+		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Login Page");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(10, 25, 1140, 56);
-		frame.getContentPane().add(lblNewLabel);
+		frmExpenseTracker.getContentPane().add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 204, 204));
 		panel.setBounds(77, 99, 1009, 417);
-		frame.getContentPane().add(panel);
+		frmExpenseTracker.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblEmail = new JLabel("Email");
@@ -114,7 +117,7 @@ public class login {
 						String details[] = db.getNameandId(em,pas);
 						getname=details[0];
 						getid=details[1];
-						frame.setVisible(false);
+						frmExpenseTracker.setVisible(false);
 						homepage.main(null);
 					}
 					else
@@ -134,13 +137,13 @@ public class login {
 		btnSignup.setBackground(new Color(204, 204, 255));
 		btnSignup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				signup.main(null);
 			}
 		});
 		btnSignup.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnSignup.setBounds(482, 554, 200, 37);
-		frame.getContentPane().add(btnSignup);
+		frmExpenseTracker.getContentPane().add(btnSignup);
 	}
 	public static String getn()
 	{

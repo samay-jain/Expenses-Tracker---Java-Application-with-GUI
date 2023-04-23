@@ -13,10 +13,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import java.awt.Toolkit;
 
 public class morefacts {
 
-	private JFrame frame;
+	private JFrame frmExpenseTracker;
 
 	/**
 	 * Launch the application.
@@ -26,7 +27,7 @@ public class morefacts {
 			public void run() {
 				try {
 					morefacts window = new morefacts();
-					window.frame.setVisible(true);
+					window.frmExpenseTracker.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,11 +82,13 @@ public class morefacts {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 1436, 779);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
+		frmExpenseTracker.setTitle("Expense Tracker");
+		frmExpenseTracker.setResizable(false);
+		frmExpenseTracker.setBounds(100, 100, 1436, 779);
+		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblSomeInterestingFacts = new JLabel("Some Interesting Facts about your Expense Activity");
 		lblSomeInterestingFacts.setHorizontalAlignment(SwingConstants.CENTER);
@@ -93,12 +96,12 @@ public class morefacts {
 		lblSomeInterestingFacts.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblSomeInterestingFacts.setBackground(new Color(51, 204, 204));
 		lblSomeInterestingFacts.setBounds(10, 10, 1402, 62);
-		frame.getContentPane().add(lblSomeInterestingFacts);
+		frmExpenseTracker.getContentPane().add(lblSomeInterestingFacts);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 204, 204));
 		panel.setBounds(32, 82, 1361, 602);
-		frame.getContentPane().add(panel);
+		frmExpenseTracker.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -179,14 +182,14 @@ public class morefacts {
 		JButton btnBack = new JButton("back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frmExpenseTracker.setVisible(false);
 				homepage.main(null);
 			}
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(255, 204, 204));
 		btnBack.setBounds(616, 694, 141, 38);
-		frame.getContentPane().add(btnBack);
+		frmExpenseTracker.getContentPane().add(btnBack);
 	}
 
 }
