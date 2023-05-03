@@ -1,7 +1,12 @@
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import net.proteanit.sql.DbUtils;
+
 import java.text.*;
+import java.time.LocalDate;
 public class DB 
 {
 	static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -165,7 +170,7 @@ public class DB
 	{
 		try {
 			String avg="";
-			String q="select avg(price) from expense where id=? and month(dte)=?";
+			String q="select sum(price) from expense where id=? and month(dte)=?";
 			stmt = con.prepareStatement(q);
 			stmt.setString(1, login.getid);
 			stmt.setString(2, datearr[1]+"");
@@ -174,6 +179,9 @@ public class DB
 			{
 				avg = rs.getString(1);
 			}
+			double div = Integer.parseInt(avg);
+			div = (double)(div/Integer.parseInt(datearr[2]));
+			avg=div+"";
 			return avg;
 		}
 		catch(Exception e)
@@ -186,7 +194,7 @@ public class DB
 	{
 		try {
 			String avg="";
-			String q="select avg(price) from expense where id=? and year(dte)=?";
+			String q="select sum(price) from expense where id=? and year(dte)=?";
 			stmt = con.prepareStatement(q);
 			stmt.setString(1, login.getid);
 			stmt.setString(2, datearr[0]+"");
@@ -195,6 +203,9 @@ public class DB
 			{
 				avg = rs.getString(1);
 			}
+			double div = Integer.parseInt(avg);
+			div = (double)(div/Integer.parseInt(datearr[1]));
+			avg = div+"";
 			return avg;
 		}
 		catch(Exception e)
@@ -205,7 +216,12 @@ public class DB
 	}
 	public String overallAverage()
 	{
-		try {
+		
+		long days = daysConverter();
+		int sum = spentOverall(login.getid);
+		double avg = (sum/days);
+		return String.valueOf(avg);
+		/*try {
 			String avg="";
 			String q="select avg(price) from expense where id=?";
 			stmt = con.prepareStatement(q);
@@ -221,7 +237,40 @@ public class DB
 		{
 			e.printStackTrace();
 		}
-		return -1+"";
+		return -1+"";*/
+//		double s = spentOverall(login.getid);
+//		int diff = Integer.parseInt(datediff());
+//		System.out.println(s+" "+diff);
+//		return "abc";
+		
+	}
+	public long daysConverter()
+	{
+		try {
+			String q="select dte from expense where id=? order by dte limit 1";
+			stmt = con.prepareStatement(q);
+			stmt.setString(1, login.getid);
+			rs = stmt.executeQuery();
+			String date1="";
+			while(rs.next())
+			{
+				date1=rs.getString(1);
+			}
+			//String date2=formatter.format(date);
+			//@SuppressWarnings("deprecation")
+			//LocalDate d1 = LocalDate.parse(date1); 
+			Date d1 = formatter.parse(date1);
+			long time_difference = date.getTime() - d1.getTime();  
+            long days = TimeUnit.MILLISECONDS.toDays(time_difference) % 365; 
+            //System.out.println(days);
+            days+=1;
+			return days;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return -1;
+		}
 	}
 	public String spentYear()
 	{

@@ -144,7 +144,7 @@ public class morefacts {
 		lblYourMonthlySpend.setForeground(new Color(0, 102, 153));
 		lblYourMonthlySpend.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblYourMonthlySpend.setBackground(new Color(51, 204, 204));
-		lblYourMonthlySpend.setBounds(10, 72, 577, 52);
+		lblYourMonthlySpend.setBounds(10, 72, 615, 52);
 		panel_1.add(lblYourMonthlySpend);
 		
 		JLabel lblYourDailySpend = new JLabel("Your Daily spend Average is Rs."+db.dailyAverage());
@@ -152,7 +152,7 @@ public class morefacts {
 		lblYourDailySpend.setForeground(new Color(0, 102, 153));
 		lblYourDailySpend.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblYourDailySpend.setBackground(new Color(51, 204, 204));
-		lblYourDailySpend.setBounds(10, 10, 577, 52);
+		lblYourDailySpend.setBounds(10, 10, 615, 52);
 		panel_1.add(lblYourDailySpend);
 		
 		JLabel lblYourYearlySpend = new JLabel("This year you spent Rs."+db.spentYear());
@@ -171,7 +171,7 @@ public class morefacts {
 		lblThisMonthYou_1.setBounds(635, 10, 577, 52);
 		panel_1.add(lblThisMonthYou_1);
 		
-		JLabel lblYourOverallSpend = new JLabel("Your overall spend average is Rs."+db.overallAverage());
+		JLabel lblYourOverallSpend = new JLabel("Your overall daily spend average is Rs."+db.overallAverage());
 		lblYourOverallSpend.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYourOverallSpend.setForeground(new Color(0, 102, 153));
 		lblYourOverallSpend.setFont(new Font("Tahoma", Font.BOLD, 26));

@@ -52,7 +52,7 @@ public class addexpense {
 	public void printTable()
 	{
 		try {
-			String q="Select dte as Date,price as Price,remark as Remark from expense where id=? order by dte";
+			String q="Select dte as Date,price as Price,remark as Remark from expense where id=? order by dte desc";
 			db.stmt=db.con.prepareStatement(q);
 			db.stmt.setString(1, login.getid);
 			db.rs=db.stmt.executeQuery();

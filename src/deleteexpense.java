@@ -49,7 +49,7 @@ public class deleteexpense {
 	public void printTable()
 	{
 		try {
-			String q="Select eid as Expense_ID,dte as Date,price as Price,remark as Remark from expense where id=? order by dte";
+			String q="Select eid as Expense_ID,dte as Date,price as Price,remark as Remark from expense where id=? order by dte desc";
 			db.stmt=db.con.prepareStatement(q);
 			db.stmt.setString(1, login.getid);
 			db.rs=db.stmt.executeQuery();
