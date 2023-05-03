@@ -21,6 +21,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
 import java.awt.Toolkit;
+import java.awt.Frame;
+import javax.swing.JDesktopPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Component;
 public class addexpense {
 
 	private JFrame frmExpenseTracker;
@@ -74,92 +80,67 @@ public class addexpense {
 	 */
 	private void initialize() {
 		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setExtendedState(Frame.MAXIMIZED_BOTH);
 		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
 		frmExpenseTracker.setTitle("Expense Tracker");
-		frmExpenseTracker.setResizable(false);
 		frmExpenseTracker.getContentPane().setBackground(new Color(255, 204, 204));
 		frmExpenseTracker.setBounds(100, 100, 1115, 670);
 		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblAddExpenses = new JLabel("Add Expenses");
 		lblAddExpenses.setForeground(new Color(0, 0, 102));
 		lblAddExpenses.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAddExpenses.setFont(new Font("Tahoma", Font.BOLD, 38));
-		lblAddExpenses.setBounds(10, 10, 1081, 62);
-		frmExpenseTracker.getContentPane().add(lblAddExpenses);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 153, 153));
-		panel.setBounds(56, 400, 989, 162);
-		frmExpenseTracker.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblEnterFollowingDetails = new JLabel("Enter following details");
-		lblEnterFollowingDetails.setBounds(305, 5, 378, 32);
-		lblEnterFollowingDetails.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnterFollowingDetails.setForeground(new Color(0, 0, 102));
-		lblEnterFollowingDetails.setFont(new Font("Tahoma", Font.BOLD, 26));
-		lblEnterFollowingDetails.setBackground(Color.WHITE);
-		panel.add(lblEnterFollowingDetails);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 47, 969, 105);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblPrice = new JLabel("Price");
-		lblPrice.setBounds(23, 10, 78, 38);
-		panel_1.add(lblPrice);
-		lblPrice.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPrice.setForeground(new Color(0, 102, 153));
-		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 26));
-		lblPrice.setBackground(Color.WHITE);
-		
-		JLabel lblRemark = new JLabel("Remark");
-		lblRemark.setBounds(402, 10, 116, 38);
-		panel_1.add(lblRemark);
-		lblRemark.setHorizontalAlignment(SwingConstants.LEFT);
-		lblRemark.setForeground(new Color(0, 102, 153));
-		lblRemark.setFont(new Font("Tahoma", Font.BOLD, 26));
-		lblRemark.setBackground(Color.WHITE);
-		
-		textprice = new JTextField();
-		textprice.setHorizontalAlignment(SwingConstants.CENTER);
-		textprice.setForeground(new Color(0, 153, 204));
-		textprice.setFont(new Font("Tahoma", Font.BOLD, 26));
-		textprice.setColumns(10);
-		textprice.setBounds(108, 10, 190, 38);
-		panel_1.add(textprice);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
-		textdate = new JTextField();
-		textdate.setText(formatter.format(date));
-		//textdate.setS
-		textdate.setHorizontalAlignment(SwingConstants.CENTER);
-		textdate.setForeground(new Color(0, 153, 204));
-		textdate.setFont(new Font("Tahoma", Font.BOLD, 26));
-		textdate.setColumns(10);
-		textdate.setBounds(108, 58, 190, 39);
-		panel_1.add(textdate);
 		
-		textremark = new JTextField();
-		textremark.setForeground(new Color(0, 153, 204));
-		textremark.setFont(new Font("Tahoma", Font.BOLD, 26));
-		textremark.setColumns(10);
-		textremark.setBounds(528, 10, 431, 38);
-		panel_1.add(textremark);
+		JScrollPane scrollPane = new JScrollPane();
 		
-		JLabel lblDate = new JLabel("Date");
-		lblDate.setBounds(23, 58, 79, 39);
-		panel_1.add(lblDate);
-		lblDate.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDate.setForeground(new Color(0, 102, 153));
-		lblDate.setFont(new Font("Tahoma", Font.BOLD, 26));
-		lblDate.setBackground(Color.WHITE);
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBackground(new Color(255, 204, 204));
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 204, 204));
+		GroupLayout groupLayout = new GroupLayout(frmExpenseTracker.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(56)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
+							.addGap(2))
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 987, Short.MAX_VALUE))
+					.addGap(58))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblAddExpenses, GroupLayout.DEFAULT_SIZE, 1081, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(458)
+					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(460))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblAddExpenses, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(20))
+		);
 		
 		JButton btnBack = new JButton("back");
+		panel_2.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmExpenseTracker.setVisible(false);
@@ -168,10 +149,9 @@ public class addexpense {
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(204, 204, 255));
-		btnBack.setBounds(388, 572, 141, 51);
-		frmExpenseTracker.getContentPane().add(btnBack);
 		
 		JButton btnAdd = new JButton("Add");
+		panel_2.add(btnAdd);
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String p = textprice.getText();
@@ -198,14 +178,131 @@ public class addexpense {
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnAdd.setBackground(new Color(204, 204, 255));
-		btnAdd.setBounds(562, 572, 141, 51);
-		frmExpenseTracker.getContentPane().add(btnAdd);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(56, 82, 987, 308);
-		frmExpenseTracker.getContentPane().add(scrollPane);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 153, 153));
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		JLabel lblEnterFollowingDetails = new JLabel("Enter following details");
+		lblEnterFollowingDetails.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnterFollowingDetails.setForeground(new Color(0, 0, 102));
+		lblEnterFollowingDetails.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblEnterFollowingDetails.setBackground(Color.WHITE);
+		
+		JPanel panel_1 = new JPanel();
+		
+		JLabel lblPrice = new JLabel("Price");
+		lblPrice.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPrice.setForeground(new Color(0, 102, 153));
+		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblPrice.setBackground(Color.WHITE);
+		
+		JLabel lblRemark = new JLabel("Remark");
+		lblRemark.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		lblRemark.setHorizontalAlignment(SwingConstants.LEFT);
+		lblRemark.setForeground(new Color(0, 102, 153));
+		lblRemark.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblRemark.setBackground(Color.WHITE);
+		
+		textprice = new JTextField();
+		textprice.setHorizontalAlignment(SwingConstants.CENTER);
+		textprice.setForeground(new Color(0, 153, 204));
+		textprice.setFont(new Font("Tahoma", Font.BOLD, 26));
+		textprice.setColumns(10);
+		textdate = new JTextField();
+		textdate.setText(formatter.format(date));
+		//textdate.setS
+		textdate.setHorizontalAlignment(SwingConstants.CENTER);
+		textdate.setForeground(new Color(0, 153, 204));
+		textdate.setFont(new Font("Tahoma", Font.BOLD, 26));
+		textdate.setColumns(10);
+		
+		textremark = new JTextField();
+		textremark.setForeground(new Color(0, 153, 204));
+		textremark.setFont(new Font("Tahoma", Font.BOLD, 26));
+		textremark.setColumns(10);
+		
+		JLabel lblDate = new JLabel("Date");
+		lblDate.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDate.setForeground(new Color(0, 102, 153));
+		lblDate.setFont(new Font("Tahoma", Font.BOLD, 26));
+		lblDate.setBackground(Color.WHITE);
+		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
+		gl_desktopPane.setHorizontalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(28)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
+					.addGap(33))
+		);
+		gl_desktopPane.setVerticalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE))
+		);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE)
+					.addGap(7))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblEnterFollowingDetails, GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(5)
+					.addComponent(lblEnterFollowingDetails)
+					.addGap(7)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
+		);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(23)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+							.addGap(7)
+							.addComponent(textprice, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(textdate, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))
+					.addGap(104)
+					.addComponent(lblRemark, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textremark, GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+					.addGap(13))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(10)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textprice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(10)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textdate, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(31)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblRemark, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textremark, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(8, Short.MAX_VALUE))
+		);
+		panel_1.setLayout(gl_panel_1);
+		panel.setLayout(gl_panel);
+		desktopPane.setLayout(gl_desktopPane);
+		frmExpenseTracker.getContentPane().setLayout(groupLayout);
 	}
 }

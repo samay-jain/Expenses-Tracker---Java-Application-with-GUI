@@ -14,6 +14,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.Toolkit;
+import java.awt.Frame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.SystemColor;
 
 public class morefacts {
 
@@ -83,37 +88,28 @@ public class morefacts {
 	 */
 	private void initialize() {
 		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.getContentPane().setBackground(SystemColor.menu);
+		frmExpenseTracker.setExtendedState(Frame.MAXIMIZED_BOTH);
 		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
 		frmExpenseTracker.setTitle("Expense Tracker");
-		frmExpenseTracker.setResizable(false);
 		frmExpenseTracker.setBounds(100, 100, 1436, 779);
 		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblSomeInterestingFacts = new JLabel("Some Interesting Facts about your Expense Activity");
 		lblSomeInterestingFacts.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSomeInterestingFacts.setForeground(new Color(0, 102, 153));
 		lblSomeInterestingFacts.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblSomeInterestingFacts.setBackground(new Color(51, 204, 204));
-		lblSomeInterestingFacts.setBounds(10, 10, 1402, 62);
-		frmExpenseTracker.getContentPane().add(lblSomeInterestingFacts);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 204, 204));
-		panel.setBounds(32, 82, 1361, 602);
-		frmExpenseTracker.getContentPane().add(panel);
-		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(56, 72, 577, 237);
-		panel.add(scrollPane);
 		
 		table1 = new JTable();
 		scrollPane.setViewportView(table1);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(701, 72, 577, 237);
-		panel.add(scrollPane_1);
 		
 		table2 = new JTable();
 		scrollPane_1.setViewportView(table2);
@@ -123,63 +119,78 @@ public class morefacts {
 		lblThisMonthYou.setForeground(new Color(0, 102, 153));
 		lblThisMonthYou.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblThisMonthYou.setBackground(new Color(51, 204, 204));
-		lblThisMonthYou.setBounds(56, 10, 577, 52);
-		panel.add(lblThisMonthYou);
 		
 		JLabel lblThisYearYou = new JLabel("This Year you spend more on");
 		lblThisYearYou.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThisYearYou.setForeground(new Color(0, 102, 153));
 		lblThisYearYou.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblThisYearYou.setBackground(new Color(51, 204, 204));
-		lblThisYearYou.setBounds(701, 10, 577, 52);
-		panel.add(lblThisYearYou);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(56, 366, 1222, 200);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		panel_1.setBackground(SystemColor.menu);
 		
-		JLabel lblYourMonthlySpend = new JLabel("Your monthly spend average is Rs."+db.monthlyAverage());
+		JLabel lblYourMonthlySpend = new JLabel("Your monthly spend average is Rs. "+db.monthlyAverage());
 		lblYourMonthlySpend.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYourMonthlySpend.setForeground(new Color(0, 102, 153));
 		lblYourMonthlySpend.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblYourMonthlySpend.setBackground(new Color(51, 204, 204));
-		lblYourMonthlySpend.setBounds(10, 72, 615, 52);
-		panel_1.add(lblYourMonthlySpend);
 		
-		JLabel lblYourDailySpend = new JLabel("Your Daily spend Average is Rs."+db.dailyAverage());
+		JLabel lblYourDailySpend = new JLabel("Your Daily spend Average is Rs. "+db.dailyAverage());
 		lblYourDailySpend.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYourDailySpend.setForeground(new Color(0, 102, 153));
 		lblYourDailySpend.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblYourDailySpend.setBackground(new Color(51, 204, 204));
-		lblYourDailySpend.setBounds(10, 10, 615, 52);
-		panel_1.add(lblYourDailySpend);
 		
-		JLabel lblYourYearlySpend = new JLabel("This year you spent Rs."+db.spentYear());
+		JLabel lblYourYearlySpend = new JLabel("This year you spent Rs. "+db.spentYear());
 		lblYourYearlySpend.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYourYearlySpend.setForeground(new Color(0, 102, 153));
 		lblYourYearlySpend.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblYourYearlySpend.setBackground(new Color(51, 204, 204));
-		lblYourYearlySpend.setBounds(635, 72, 577, 52);
-		panel_1.add(lblYourYearlySpend);
 		
-		JLabel lblThisMonthYou_1 = new JLabel("This month you spent Rs."+db.spentMonth(login.getid));
+		JLabel lblThisMonthYou_1 = new JLabel("This month you spent Rs. "+db.spentMonth(login.getid));
 		lblThisMonthYou_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThisMonthYou_1.setForeground(new Color(0, 102, 153));
 		lblThisMonthYou_1.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblThisMonthYou_1.setBackground(new Color(51, 204, 204));
-		lblThisMonthYou_1.setBounds(635, 10, 577, 52);
-		panel_1.add(lblThisMonthYou_1);
 		
-		JLabel lblYourOverallSpend = new JLabel("Your overall daily spend average is Rs."+db.overallAverage());
+		JLabel lblYourOverallSpend = new JLabel("Your overall daily spend average is Rs. "+db.overallAverage());
 		lblYourOverallSpend.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYourOverallSpend.setForeground(new Color(0, 102, 153));
 		lblYourOverallSpend.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblYourOverallSpend.setBackground(new Color(51, 204, 204));
-		lblYourOverallSpend.setBounds(313, 134, 577, 52);
-		panel_1.add(lblYourOverallSpend);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(SystemColor.menu);
+		GroupLayout groupLayout = new GroupLayout(frmExpenseTracker.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblSomeInterestingFacts, GroupLayout.DEFAULT_SIZE, 1402, Short.MAX_VALUE)
+					.addGap(10))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(32)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1361, Short.MAX_VALUE)
+					.addGap(29))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(649)
+					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(674))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblSomeInterestingFacts, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(5))
+		);
 		
 		JButton btnBack = new JButton("back");
+		panel_2.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmExpenseTracker.setVisible(false);
@@ -188,8 +199,74 @@ public class morefacts {
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(255, 204, 204));
-		btnBack.setBounds(616, 694, 141, 38);
-		frmExpenseTracker.getContentPane().add(btnBack);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(56)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblThisMonthYou, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+							.addGap(68)
+							.addComponent(lblThisYearYou, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+							.addGap(68)
+							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 1222, Short.MAX_VALUE))
+					.addGap(83))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblThisMonthYou, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblThisYearYou, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
+					.addGap(57)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+		);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblYourDailySpend, GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(lblThisMonthYou_1, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+					.addGap(10))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblYourMonthlySpend, GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(lblYourYearlySpend, GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+					.addGap(10))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblYourOverallSpend, GroupLayout.DEFAULT_SIZE, 1192, Short.MAX_VALUE)
+					.addGap(10))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblYourDailySpend, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblThisMonthYou_1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblYourMonthlySpend, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblYourYearlySpend, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addComponent(lblYourOverallSpend, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+		);
+		panel_1.setLayout(gl_panel_1);
+		panel.setLayout(gl_panel);
+		frmExpenseTracker.getContentPane().setLayout(groupLayout);
 	}
 
 }

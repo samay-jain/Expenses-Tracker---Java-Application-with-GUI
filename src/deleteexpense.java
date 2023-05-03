@@ -21,6 +21,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.awt.Toolkit;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JDesktopPane;
+import java.awt.Frame;
+import java.awt.SystemColor;
 
 public class deleteexpense {
 
@@ -76,32 +82,65 @@ public class deleteexpense {
 	 */
 	private void initialize() {
 		frmExpenseTracker = new JFrame();
+		frmExpenseTracker.setExtendedState(Frame.MAXIMIZED_BOTH);
 		frmExpenseTracker.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Admin\\Downloads\\compare.png"));
 		frmExpenseTracker.setTitle("Expense Tracker");
-		frmExpenseTracker.setResizable(false);
 		frmExpenseTracker.getContentPane().setBackground(new Color(255, 204, 204));
 		frmExpenseTracker.setBounds(100, 100, 1390, 769);
 		frmExpenseTracker.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmExpenseTracker.getContentPane().setLayout(null);
 		
 		JLabel lblDeleteExpense = new JLabel("Delete Expense");
 		lblDeleteExpense.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDeleteExpense.setForeground(new Color(0, 0, 102));
 		lblDeleteExpense.setFont(new Font("Tahoma", Font.BOLD, 38));
 		lblDeleteExpense.setBackground(new Color(0, 0, 0));
-		lblDeleteExpense.setBounds(10, 22, 1356, 62);
-		frmExpenseTracker.getContentPane().add(lblDeleteExpense);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(61, 102, 1252, 330);
-		frmExpenseTracker.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setBackground(new Color(204, 204, 255));
 		table.setForeground(new Color(0, 102, 153));
 		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBackground(new Color(255, 204, 204));
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(255, 204, 204));
+		GroupLayout groupLayout = new GroupLayout(frmExpenseTracker.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(61)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(desktopPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1249, Short.MAX_VALUE)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1249, Short.MAX_VALUE))
+					.addGap(66))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(578)
+					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+					.addGap(567))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblDeleteExpense, GroupLayout.DEFAULT_SIZE, 1356, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblDeleteExpense, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 333, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(28))
+		);
+		
 		JButton btnBack = new JButton("Back");
+		panel_2.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmExpenseTracker.setVisible(false);
@@ -110,36 +149,61 @@ public class deleteexpense {
 		});
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(204, 204, 255));
-		btnBack.setBounds(534, 671, 141, 51);
-		frmExpenseTracker.getContentPane().add(btnBack);
+		
+		JButton btnDelete = new JButton("Delete");
+		panel_2.add(btnDelete);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String eid=texteid.getText();
+				String price=textprice.getText();
+				if(eid.isEmpty() || price.isEmpty())
+				{
+					JOptionPane.showMessageDialog(null, "please enter valid expense id!");
+				}
+				else
+				{
+					boolean b=db.deleteExpense(eid);
+					if(b)
+					{
+						JOptionPane.showMessageDialog(null, "Expense deleted successfully!");
+						printTable();
+						texteid.setText("");
+						textprice.setText("");
+						textremark.setText("");
+						textdate.setText("");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Expense can't be deleted due to some Technical Issue!");
+						printTable();
+						texteid.setText("");
+						textprice.setText("");
+						textremark.setText("");
+						textdate.setText("");
+					}
+				}
+			}
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 24));
+		btnDelete.setBackground(new Color(204, 204, 255));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 153, 153));
-		panel.setBounds(61, 442, 1252, 219);
-		frmExpenseTracker.getContentPane().add(panel);
-		panel.setLayout(null);
 		
 		JLabel lblEnterFollowingDetails = new JLabel("Enter following details");
-		lblEnterFollowingDetails.setBounds(394, 0, 464, 44);
 		lblEnterFollowingDetails.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnterFollowingDetails.setForeground(new Color(51, 0, 102));
 		lblEnterFollowingDetails.setFont(new Font("Tahoma", Font.BOLD, 32));
 		lblEnterFollowingDetails.setBackground(new Color(0, 102, 102));
-		panel.add(lblEnterFollowingDetails);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(10, 52, 1232, 157);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		panel_1.setBackground(SystemColor.menu);
 		
 		JLabel lblPrice = new JLabel("Price");
 		lblPrice.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPrice.setForeground(new Color(0, 102, 153));
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblPrice.setBackground(Color.WHITE);
-		lblPrice.setBounds(33, 72, 78, 38);
-		panel_1.add(lblPrice);
 		
 		textprice = new JTextField();
 		textprice.setEditable(false);
@@ -147,16 +211,12 @@ public class deleteexpense {
 		textprice.setForeground(new Color(0, 153, 204));
 		textprice.setFont(new Font("Tahoma", Font.BOLD, 26));
 		textprice.setColumns(10);
-		textprice.setBounds(121, 72, 147, 38);
-		panel_1.add(textprice);
 		
 		JLabel lblEnterExpenseId = new JLabel("Enter Expense ID");
 		lblEnterExpenseId.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEnterExpenseId.setForeground(new Color(0, 102, 153));
 		lblEnterExpenseId.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblEnterExpenseId.setBackground(Color.WHITE);
-		lblEnterExpenseId.setBounds(415, 10, 254, 38);
-		panel_1.add(lblEnterExpenseId);
 		
 		texteid = new JTextField();
 		texteid.addKeyListener(new KeyAdapter() {
@@ -196,16 +256,12 @@ public class deleteexpense {
 		texteid.setForeground(new Color(0, 153, 204));
 		texteid.setFont(new Font("Tahoma", Font.BOLD, 26));
 		texteid.setColumns(10);
-		texteid.setBounds(679, 10, 137, 38);
-		panel_1.add(texteid);
 		
 		JLabel lblRemark = new JLabel("Remark");
 		lblRemark.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRemark.setForeground(new Color(0, 102, 153));
 		lblRemark.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblRemark.setBackground(Color.WHITE);
-		lblRemark.setBounds(479, 72, 115, 38);
-		panel_1.add(lblRemark);
 		
 		textremark = new JTextField();
 		textremark.setEditable(false);
@@ -213,16 +269,12 @@ public class deleteexpense {
 		textremark.setForeground(new Color(0, 153, 204));
 		textremark.setFont(new Font("Tahoma", Font.BOLD, 26));
 		textremark.setColumns(10);
-		textremark.setBounds(604, 72, 147, 38);
-		panel_1.add(textremark);
 		
 		JLabel lblDate = new JLabel("Date");
 		lblDate.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDate.setForeground(new Color(0, 102, 153));
 		lblDate.setFont(new Font("Tahoma", Font.BOLD, 26));
 		lblDate.setBackground(Color.WHITE);
-		lblDate.setBounds(926, 72, 88, 38);
-		panel_1.add(lblDate);
 		
 		textdate = new JTextField();
 		textdate.setEditable(false);
@@ -230,45 +282,87 @@ public class deleteexpense {
 		textdate.setForeground(new Color(0, 153, 204));
 		textdate.setFont(new Font("Tahoma", Font.BOLD, 26));
 		textdate.setColumns(10);
-		textdate.setBounds(1020, 72, 166, 38);
-		panel_1.add(textdate);
-		
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String eid=texteid.getText();
-				String price=textprice.getText();
-				if(eid.isEmpty() || price.isEmpty())
-				{
-					JOptionPane.showMessageDialog(null, "please enter valid expense id!");
-				}
-				else
-				{
-					boolean b=db.deleteExpense(eid);
-					if(b)
-					{
-						JOptionPane.showMessageDialog(null, "Expense deleted successfully!");
-						printTable();
-						texteid.setText("");
-						textprice.setText("");
-						textremark.setText("");
-						textdate.setText("");
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Expense can't be deleted due to some Technical Issue!");
-						printTable();
-						texteid.setText("");
-						textprice.setText("");
-						textremark.setText("");
-						textdate.setText("");
-					}
-				}
-			}
-		});
-		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 24));
-		btnDelete.setBackground(new Color(204, 204, 255));
-		btnDelete.setBounds(705, 671, 141, 51);
-		frmExpenseTracker.getContentPane().add(btnDelete);
+		GroupLayout gl_desktopPane = new GroupLayout(desktopPane);
+		gl_desktopPane.setHorizontalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(21)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE)
+					.addGap(22))
+		);
+		gl_desktopPane.setVerticalGroup(
+			gl_desktopPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_desktopPane.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+					.addGap(14))
+		);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1186, Short.MAX_VALUE)
+						.addComponent(lblEnterFollowingDetails, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1186, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(lblEnterFollowingDetails, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(28, Short.MAX_VALUE))
+		);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(415)
+					.addComponent(lblEnterExpenseId, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(texteid, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(320, Short.MAX_VALUE))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(33)
+					.addComponent(lblPrice, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(textprice, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+					.addGap(211)
+					.addComponent(lblRemark, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+					.addGap(10)
+					.addComponent(textremark, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+					.addGap(142)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblDate, GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+							.addGap(158))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(80)
+							.addComponent(textdate, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+					.addGap(47))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEnterExpenseId, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(texteid, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textprice, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRemark, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textremark, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(22))
+		);
+		panel_1.setLayout(gl_panel_1);
+		panel.setLayout(gl_panel);
+		desktopPane.setLayout(gl_desktopPane);
+		frmExpenseTracker.getContentPane().setLayout(groupLayout);
 	}
 }

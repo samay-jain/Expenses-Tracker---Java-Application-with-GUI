@@ -219,7 +219,7 @@ public class DB
 		
 		long days = daysConverter();
 		int sum = spentOverall(login.getid);
-		double avg = (sum/days);
+		double avg = (double)(sum/days);
 		return String.valueOf(avg);
 		/*try {
 			String avg="";
