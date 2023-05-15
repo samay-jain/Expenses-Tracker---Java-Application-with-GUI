@@ -26,6 +26,9 @@ import javax.swing.JDesktopPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+
 import java.awt.Component;
 public class addexpense {
 
@@ -304,5 +307,13 @@ public class addexpense {
 		panel.setLayout(gl_panel);
 		desktopPane.setLayout(gl_desktopPane);
 		frmExpenseTracker.getContentPane().setLayout(groupLayout);
+		
+		
+		table.setFont(new Font("Segoe UI",Font.PLAIN, 18));
+		table.setRowHeight(40);
+		JTableHeader th = table.getTableHeader();
+		th.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer())
+	    .setHorizontalAlignment(JLabel.LEFT);
 	}
 }

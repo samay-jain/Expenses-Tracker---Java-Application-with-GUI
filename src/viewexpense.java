@@ -17,6 +17,9 @@ import java.awt.Toolkit;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+
 import java.awt.Frame;
 
 public class viewexpense {
@@ -131,5 +134,12 @@ public class viewexpense {
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnBack.setBackground(new Color(204, 204, 255));
 		frmExpenseTracker.getContentPane().setLayout(groupLayout);
+		
+		table.setFont(new Font("Segoe UI",Font.PLAIN, 18));
+		table.setRowHeight(40);
+		JTableHeader th = table.getTableHeader();
+		th.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer())
+	    .setHorizontalAlignment(JLabel.LEFT);
 	}
 }

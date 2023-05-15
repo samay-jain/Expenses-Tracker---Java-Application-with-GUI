@@ -18,6 +18,9 @@ import java.awt.Frame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+
 import java.awt.SystemColor;
 
 public class morefacts {
@@ -267,6 +270,20 @@ public class morefacts {
 		panel_1.setLayout(gl_panel_1);
 		panel.setLayout(gl_panel);
 		frmExpenseTracker.getContentPane().setLayout(groupLayout);
+		
+		table1.setFont(new Font("Segoe UI",Font.PLAIN, 18));
+		table1.setRowHeight(40);
+		JTableHeader th = table1.getTableHeader();
+		th.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		((DefaultTableCellRenderer)table1.getTableHeader().getDefaultRenderer())
+	    .setHorizontalAlignment(JLabel.LEFT);
+		
+		table2.setFont(new Font("Segoe UI",Font.PLAIN, 18));
+		table2.setRowHeight(40);
+		JTableHeader the = table2.getTableHeader();
+		the.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		((DefaultTableCellRenderer)table2.getTableHeader().getDefaultRenderer())
+	    .setHorizontalAlignment(JLabel.LEFT);
 	}
 
 }
